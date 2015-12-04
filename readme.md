@@ -1,4 +1,4 @@
-# Advent of Code Solutions in Ruby
+# Advent of Code Solutions in Ruby (◡‿◡✿)
 
 Here are my solutions for [Advent of Code](http://adventofcode.com)'s problems, in Ruby.
 
@@ -22,3 +22,11 @@ $ ruby advent01.rb
 ### Why Make a Repo
 
 I was contemplating sharing my solutions for the first couple days, thinking that it would be fun to show them and potentially help others who are stuck and get feedback on what others think of my code. Then it became a necessity because I did days 1 and 2 on my work computer and day 3 on my personal computer and I'm a completionist and wanted to have them all together and be able to work on them from any of my computers. Thus, a repo was born.
+
+### About Me
+
+I'm [Cara](http://caraheacock.com), and I'm a full-stack developer at [Big Wheel Brigade](http://bigwheelbrigade.com). Most of the applications we create are Ruby on Rails, and some WordPress sites here and there.
+
+I went to [Omaha Code School](http://omahacodeschool.com) in early 2014 which is where I learned how to web. We were primarily taught Ruby, Rails, and the mandatory front-end languages (HTML, CSS, JavaScript). After I graduated I promptly dropped Ruby/Rails for the longest time and was creating a lot of WordPress sites at my next places of employment, until I ended up at Big Wheel. Now I'm back in Ruby land, and after having been immersed in PHP for so long, I really, *really* missed Ruby and didn't even realize it until I got back into it.
+
+Yay, Ruby ✧･ﾟ:*╰(◕‿◕｡╰) So great

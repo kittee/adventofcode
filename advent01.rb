@@ -12,7 +12,7 @@ parentheses_list.each.with_index do |p, i|
   p == "(" ? current_floor += 1 : current_floor -= 1
   
   # For debugging
-  # Uncomment lines 15-16 for details of each step. Example:
+  # Uncomment lines 19-20 for details of each step. Example:
   # "Step 1: Up a floor"
   # "Current floor: 1"
   #

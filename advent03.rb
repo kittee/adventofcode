@@ -28,13 +28,14 @@ houses2 = [santa_current_position.dup, robo_santa_current_position.dup]
 #
 # Returns the new position after moving in the given direction
 def change_position(direction, current_position, houses)
-  if direction == ">"
+  case direction
+  when ">"
     current_position[0] += 1
-  elsif direction == "<"
+  when "<"
     current_position[0] -= 1
-  elsif direction == "^"
+  when "^"
     current_position[1] += 1
-  elsif direction == "v"
+  when "v"
     current_position[1] -= 1
   end
   

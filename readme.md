@@ -4,7 +4,9 @@ Here are my solutions for [Advent of Code](http://adventofcode.com)'s problems, 
 
 Advent of Code is a really cool series of coding word problems, all of them Christmas-themed. There will be 25 total, and a new one comes out every day, like an advent calendar. I think it's pretty awesome.
 
-I'm keeping this code pretty minimalist, with the exception of comments explaining what all the parts are doing. I'm not going to reiterate the problems, so look at this code in the context of the word problem. I also hard coded my puzzle inputs directly in the files, because these are mostly for me, so they don't take user input. If you want to appropriate this code for yourself, you'll have to copy and paste your own input in there.
+I'm keeping this code pretty minimalist, with the exception of comments explaining what all the parts are doing. I'm not going to reiterate the problems, so look at this code in the context of the word problem.
+
+My inputs are in the "inputs" directory, and I made a custom method in utility.rb that just reads and returns the contents.
 
 ### Directions
 

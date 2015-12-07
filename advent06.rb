@@ -1,5 +1,5 @@
 # Advent of Code
-# Day 6, Part 1
+# Day 6
 # Original problem: http://adventofcode.com/day/6
 
 # I've got this down to about 5.3-5.5 seconds to solve both parts of the

@@ -30,7 +30,7 @@ input = get_input(7)
 #
 #    "AND"    - the bitwise AND of operand1 and operand2 is provided to a wire
 #               e.g. Instruction: x AND y -> z
-#                    Ruby:        x = x & y
+#                    Ruby:        z = x & y
 #
 #    "OR"     - the bitwise OR of operand1 and operand2 is provided to a wire
 #               e.g. Instruction: x OR y -> z
@@ -62,6 +62,9 @@ input = get_input(7)
 # signal, or a string indicating another wire if the instruction provided
 # a wire
 #
+# e.g. For x RSHIFT 1 -> y, operand1 would be the string "x" and operand2 would
+# be the integer 1.
+#
 # result - a string indicating the wire being connected to
 class Instruction
   attr_accessor :operator, :operand1, :operand2, :result
@@ -91,12 +94,8 @@ class Instruction
     
     # Convert number strings to integers if they were a signal rather than a
     # wire label.
-    if @operand1 && @operand1[/[0-9]+/]
-      @operand1 = @operand1.to_i
-    end
-    
-    if @operand2 && @operand2[/[0-9]+/]
-      @operand2 = @operand2.to_i
+    @operand1, @operand2 = [@operand1, @operand2].map do |op|
+      op && op[/[0-9]+/] ? op.to_i : op
     end
   end
 end
@@ -108,6 +107,7 @@ end
 #
 # operand - an integer or string indicating either a signal or a wire,
 #           respectively
+# wires - a hash of the wires' labels and signals
 #
 # Returns an integer, or nil if the provided operand was a string and the
 # wire's signal has not been set yet in the wires hash.
@@ -128,7 +128,7 @@ end
 # signal has been determined yet in the wires hash. For example,
 # x LSHIFT 2 -> y will attempt to look up if wires["x"] has been solved yet. If
 # it hasn't, skip this instruction and try again later after evaluating all
-# other instructions. If it has, do math according to the operand and set the
+# other instructions. If it has, do math according to the operator and set the
 # wire's value to the result.
 #
 # Once an instruction is successfully completed, remove it from the
@@ -137,7 +137,8 @@ end
 # instructions - an array of Instruction objects indicating how to
 #                connect wires
 #
-# Returns a hash of wires with all wires set to signals
+# Returns a hash with strings representing wires as the keys, and integers
+# representing signals as the values
 def connect_wires(instructions)
   wires = {}
   
@@ -198,16 +199,16 @@ original_instructions.each do |instruction|
   instructions << new_instruction
 end
 
-# Duplicate the instructions and wires for part 2 of the problem
-instructions2 = instructions.dup
-
 # Set all the wires' signals for part 1
 wires = connect_wires(instructions)
 
-# For part 2, set wire "b" to the result of wire "a" from part 1
+# For part 2, start completely over, but this time, wire "b"'s signal is the
+# result of wire "a" from part 1. So we'll duplicate the instructions and
+# rewrite the "b" instruction.
+instructions2 = instructions.dup
 b_instruction = instructions2.find {|i| i.result == "b"}
 b_instruction.operand1 = wires["a"]
-b_instruction.operator = "EQUALS" if b_instruction.operator != "EQUALS"
+b_instruction.operator = "EQUALS"
 
 # Set all the wires' signals for part 2
 wires2 = connect_wires(instructions2)
@@ -265,5 +266,5 @@ make_wires_table(wires, "PART 1")
 make_wires_table(wires2, "PART 2")
 
 # Outputs just the answer
-puts "Signal on Wire \"a\", part 1: " + wires["a"].to_s
-puts "Signal on Wire \"a\", part 2: " + wires2["a"].to_s
+puts "Signal on wire \"a\", part 1: " + wires["a"].to_s
+puts "Signal on wire \"a\", part 2: " + wires2["a"].to_s

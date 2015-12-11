@@ -1,8 +1,5 @@
 # Utility methods for Advent of Code problems
 
-# Libraries that I keep using
-require "pry"
-
 # Gets the input for a given day
 # Input files must go in the "inputs" directory and be named "adventXX.txt"
 # where "XX" is the day with leading zeros

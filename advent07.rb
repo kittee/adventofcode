@@ -2,7 +2,6 @@
 # Day 7
 # Original problem: http://adventofcode.com/day/7
 
-require "pry"
 require_relative "utility"
 
 # Test input

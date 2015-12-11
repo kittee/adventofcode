@@ -3,7 +3,6 @@
 # Original problem: http://adventofcode.com/day/9
 
 require_relative "utility"
-require "pry"
 
 input = get_input(9)
 

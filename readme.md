@@ -6,7 +6,22 @@ Advent of Code is a really cool series of coding word problems, all of them Chri
 
 I'm keeping this code pretty minimalist, with the exception of comments explaining what all the parts are doing. I'm not going to reiterate the problems, so look at this code in the context of the word problem.
 
-My inputs are in the "inputs" directory, and I made a custom method in utility.rb that just reads and returns the contents.
+My inputs are in the "inputs" directory, and I made a custom method in utility.rb that just reads and returns the contents. If a particular day had a really short input, I just included it directly in the ruby file, so there isn't an input file for every day.
+
+### Overview
+
+1. [Day 1](http://adventofcode.com/day/1) - stairs directions
+2. [Day 2](http://adventofcode.com/day/2) - present dimensions
+3. [Day 3](http://adventofcode.com/day/3) - delivery directions
+4. [Day 4](http://adventofcode.com/day/4) - brute-force MD5 digest
+5. [Day 5](http://adventofcode.com/day/5) - naughty and nice word list
+6. [Day 6](http://adventofcode.com/day/6) - light grids
+7. [Day 7](http://adventofcode.com/day/7) - bitwise logic
+8. [Day 8](http://adventofcode.com/day/8) - parsing character length
+9. [Day 9](http://adventofcode.com/day/9) - delivery routes between cities
+10. [Day 10](http://adventofcode.com/day/10) - look and say
+11. [Day 11](http://adventofcode.com/day/11) - password generator
+12. [Day 12](http://adventofcode.com/day/12) - accounting system
 
 ### Directions
 

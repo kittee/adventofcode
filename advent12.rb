@@ -4,44 +4,78 @@
 
 require_relative "utility"
 require "json"
+require "pry"
 
 input = get_input(12)
 
 json = JSON.parse(input)
 
-@total = 0
-@total2 = 0
-
-def add_items(item)
-  if item.class == Array
-    item.each do |i|
-      add_items(i)
+# Class for evaluating the sums of numbers in JSON objects
+class AccountingSystem
+  attr_accessor :json
+  
+  def initialize(json)
+    @json = json
+  end
+  
+  # Adds all integer values in the system
+  #
+  # Returns an integer sum
+  def total
+    @total_count = 0
+    add_items(@json)
+    @total_count
+  end
+  
+  # Adds all integer values in the system, but will ignore objects that have a
+  # value of the passed data
+  #
+  # ignore - any value, if an object has this value, the entire object is
+  #          excluded from the total
+  #
+  # Returns an integer sum
+  def total_without(ignore)
+    @total_count = 0
+    add_items(@json, ignore)
+    @total_count
+  end
+  
+  private
+  
+  # A recursive method used in the total and total_without methods. This method
+  # steps through all levels of an object and adds integers that it finds to
+  # the @total_count.
+  #
+  # item - data of any type to evaluate
+  # ignore - any value, optional, if an object has this value, the entire
+  #          object is excluded from the total
+  def add_items(item, ignore = nil)
+    case item.class.name
+    when "Array"
+      item.each do |i|
+        add_items(i, ignore)
+      end
+    when "Hash"
+      # If there is nothing to ignore, or if there is something to ignore but
+      # the hash does not have that value, continue calling add_items.
+      if !ignore || (ignore && !item.has_value?(ignore))
+        item.each do |k, v|
+          add_items(v, ignore)
+        end
+      end
+    when "Fixnum"
+      @total_count += item
     end
-  elsif item.class == Hash
-    item.each do |k, v|
-      add_items(v)
-    end
-  elsif item.class == Fixnum
-    @total += item
   end
 end
 
-def add_items_without_red(item)
-  if item.class == Array
-    item.each do |i|
-      add_items_without_red(i)
-    end
-  elsif item.class == Hash && !item.has_value?("red")
-    item.each do |k, v|
-      add_items_without_red(v)
-    end
-  elsif item.class == Fixnum
-    @total2 += item
-  end
-end
+# Create the accounting system object
+accounting_system = AccountingSystem.new(json)
 
-add_items(json)
-add_items_without_red(json)
+# Evaluate parts 1 and 2 of the challenge
+answer1 = accounting_system.total
+answer2 = accounting_system.total_without("red")
 
-puts @total
-puts @total2
+puts "Total: " + answer1.to_s
+puts "-" * 20
+puts "Total excluding objects\nwith \"red\" values: " + answer2.to_s

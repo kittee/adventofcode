@@ -11,10 +11,13 @@ input = get_input(13)
 # names - an array of just everyone's names
 # people - a multidimentional hash of how happy a person is seating next to
 #          another person. For example, people["Alice"]["Bob"] has a value
-#          of -57, meaning Alice loses 57 happiness sitting next to Bob.
+#          of -57, meaning Alice loses 57 happiness sitting next to Bob. The
+#          reverse is not necessarily the same. For example,
+#          people["Bob"]["Alice"] has a value of -14, meaning Bob loses -14
+#          happiness sitting next to Alice.
 #
 # Returns an array the best seating arrangement, where the first object is an
-# array of how people should be places next to each other, and the second
+# array of how people should be placed next to each other, and the second
 # object is an integer indicating the total happiness.
 def find_best_arrangement(names, people)
   # Creates every combination of seating arrangements
@@ -104,18 +107,24 @@ output_seating_arrangement_names(best_seating_arrangement[0])
 # Part 2
 # Now to add myself to this insanity
 
-# Duplicate the names and people, and add "Myself" to the names
+# Duplicate the names and add "Myself"
 names2 = names.dup
-people2 = people.dup
 names2 << "Myself"
 
-# Add "Myself" to the people2 hash
+# Duplicate the people hash and add a hash for "Myself"
+people2 = people.dup
 people2["Myself"] = {}
 
 # Add values of 0 for happiness involving myself
 # (wow that sounds weird)
 people2.each do |person, others|
+  # Skip "Myself", I can't sit next to myself
+  next if person == "Myself"
+  
+  # This person gains 0 happiness sitting next to me
   others["Myself"] = 0
+  
+  # I gain 0 happiness sitting next to them
   people2["Myself"][person] = 0
 end
 

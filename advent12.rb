@@ -4,7 +4,6 @@
 
 require_relative "utility"
 require "json"
-require "pry"
 
 input = get_input(12)
 
